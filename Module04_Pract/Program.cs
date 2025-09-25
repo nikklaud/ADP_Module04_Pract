@@ -33,31 +33,17 @@ internal class Program
         // }
         
         //task 3 
-        Console.WriteLine("Document type (1- Letter, 2- Report, 3- Invoice, 4- Resume):");
-        int choice = Convert.ToInt32(Console.ReadLine());
-        DocumentCreator documentCreator = null;
+
+        DocumentCreator? documentCreator = DocumentChoise.CreateDocumentCreator();
         Document document = null;
-        switch (choice)
+
+        if (documentCreator == null)
         {
-            case 1:
-                documentCreator = new LetterCreator();
-                break;
-            case 2:
-                
-                documentCreator = new ReportCreator();
-                break;
-            case 3:
-                documentCreator = new InvoiceCreator();
-                break;
-            case 4:
-                documentCreator = new ResumeCreator();
-                break;
-            default:
-                Console.WriteLine("Invalid choice.");
-                break;
-            
+            Console.WriteLine("Document not created");
+            return;
         }
-        document = documentCreator.CreateDocument();
+        
+        document = documentCreator?.CreateDocument();
         document.Open();
         
 
