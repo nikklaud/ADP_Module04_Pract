@@ -1,0 +1,102 @@
+// See https://aka.ms/new-console-template for more information
+
+using System.Data;
+
+namespace Module04_Pract;
+
+public interface IDataBaseConnection
+{
+    void Connect();
+    void Disconnect();
+    DataTable ExecuteQuery(string query);
+}
+
+public class MySqlConnection : IDataBaseConnection
+{
+    public void Connect()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Disconnect()
+    {
+        throw new NotImplementedException();
+    }
+
+    public DataTable ExecuteQuery(string query)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class SqlServerConnection : IDataBaseConnection
+{
+    public void Connect()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Disconnect()
+    {
+        throw new NotImplementedException();
+    }
+
+    public DataTable ExecuteQuery(string query)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class OracleConnection : IDataBaseConnection
+{
+    public void Connect()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Disconnect()
+    {
+        throw new NotImplementedException();
+    }
+
+    public DataTable ExecuteQuery(string query)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+//FactoryMethod
+public class DataBaseConnectionFactory
+{
+    public IDataBaseConnection CreateDataBaseConnection(string connectionType)
+    {
+        if (connectionType == "MySqlConnection")
+        {
+            return new MySqlConnection();
+        }
+        else if (connectionType == "SqlServerConnection")
+        {
+            return new SqlServerConnection();
+        }
+        else if (connectionType == "OracleConnection")
+        {
+            return new OracleConnection();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+}
+
+internal class Program
+{
+    public static void Main(string[] args)
+    { 
+        DataBaseConnectionFactory factory = new DataBaseConnectionFactory();
+        IDataBaseConnection mySqlConnection = factory.CreateDataBaseConnection("MySqlConnection");
+        mySqlConnection.Connect();
+        
+    }
+}
